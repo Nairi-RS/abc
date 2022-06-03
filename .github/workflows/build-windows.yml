@@ -31,6 +31,13 @@ jobs:
         devenv abcspace.dsw /upgrade  ; if (-not $? ) { cat UpgradeLog.htm }
         msbuild abcspace.sln /m /nologo /p:Configuration=Release /p:PlatformTarget=x86
 
+    - name: Upload logs
+      uses: actions/upload-artifact@v2
+      with:
+        name: logs
+        path: result*/
+
+
     - name: Test Executable
       run: |
         _TEST\abc.exe -c "r i10.aig; b; ps; b; rw -l; rw -lz; b; rw -lz; b; ps; cec"
