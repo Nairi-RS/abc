@@ -26,10 +26,10 @@ jobs:
       with:
         architecture: x86
 
-    - name: Upgrade project files to latest Visual Studio, ignoring upgrade errors
+    - name: Upgrade project files to latest Visual Studio, ignoring upgrade errors, and build
       run: |
         devenv abcspace.dsw /upgrade  ; if (-not $? ) { cat UpgradeLog.htm }
-
+        msbuild abcspace.sln /m /nologo /p:Configuration=Release /p:PlatformTarget=x86
 
     - name: Upload solution
       uses: actions/upload-artifact@v2
@@ -38,9 +38,9 @@ jobs:
         path: abcspace.sln
 
 
-    - name: build
-      run: |
-        msbuild abcspace.sln /m /nologo /p:Configuration=Release /p:PlatformTarget=x86
+  #  - name: build
+   #   run: |
+   #     msbuild abcspace.sln /m /nologo /p:Configuration=Release /p:PlatformTarget=x86
 
 
     - name: Test Executable
