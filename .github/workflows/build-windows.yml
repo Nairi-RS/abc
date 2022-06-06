@@ -37,7 +37,6 @@ jobs:
         name: logs
         path: result*/
 
-
     - name: Test Executable
       run: |
         _TEST\abc.exe -c "r i10.aig; b; ps; b; rw -l; rw -lz; b; rw -lz; b; ps; cec"
